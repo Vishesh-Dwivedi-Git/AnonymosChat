@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "./ui/moving-border";
+import {Link} from "react-scroll";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,7 +21,7 @@ export function Header() {
 
   return (
     <header className="p-4 border-b border-gray-800 sticky top-0 bg-black/70 backdrop-blur-lg z-10">
-      <nav className="container mx-auto flex justify-between items-center">
+      <nav  className="container mx-auto flex justify-between items-center">
         {/* Logo */}
         <div className="text-2xl font-bold text-white font-code">
           Anonymous<span className="text-blue-500">Chat</span>
@@ -57,17 +58,23 @@ export function Header() {
             isMenuOpen
               ? "flex flex-col  justify-center items-center space-y-32 pb-5 bg-black absolute top-full left-0 w-full shadow-md h-screen"
               : "hidden"
-          } md:flex md:flex-row md:relative md:top-0 md:left-0 md:space-y-0 md:space-x-6 md:w-auto md:shadow-none md:bg-transparent`}
+          } md:flex md:flex-row md:relative md:top-0 md:left-0 md:space-y-0 md:space-x-6 md:w-auto md:shadow-none md:bg-transparent items-center`}
         >
-          <button className="text-gray-300 hover:text-white font-code font-bold text-lg transition duration-300">
+          
+          <Link to="home" smooth={true}
+                  duration={500} className="text-gray-300 hover:text-white font-code font-bold text-lg transition duration-300 cursor-pointer">
             Home
-          </button>
-          <button className="text-gray-300 hover:text-white font-code font-bold text-lg transition duration-300">
+          </Link>
+          <Link to="features" smooth={true}
+                  duration={500}  className="text-gray-300 hover:text-white font-code font-bold text-lg transition duration-300  cursor-pointer">
             Features
-          </button>
-          <Button borderRadius="1.75rem" className="text-gray-300  hover:text-white font-code font-bold text-sm transition duration-300">
+          </Link>
+          <Link to="demo" smooth={true}
+                  duration={500} >
+          <Button borderRadius="1.75rem" className="text-gray-300  hover:text-white font-code font-bold text-sm transition duration-300 ">
             Take Demo
           </Button>
+          </Link>
         </div>
       </nav>
     </header>

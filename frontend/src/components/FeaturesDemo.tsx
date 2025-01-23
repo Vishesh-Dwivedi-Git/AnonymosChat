@@ -4,44 +4,60 @@ import createGlobe from "cobe";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { IconBrandYoutubeFilled } from "@tabler/icons-react";
+import LandVideo from "../assets/LandVideo.mp4.mp4"
+import img1 from "../assets/output.jpg"
+import img2 from "../assets/output (1).jpg"
+import img3 from "../assets/output (2).jpg"
+import img4 from "../assets/output (3).jpg"
 
 export function FeaturesSectionDemo() {
   const features = [
     {
-      title: "Track issues effectively",
+      title: "Unleash Anonymous Connections",
       description:
-        "Track and manage your project issues with ease using our intuitive interface.",
-      skeleton: <SkeletonOne />,
-      className:
-        "col-span-1 lg:col-span-4 border-b lg:border-r dark:border-neutral-800",
-    },
-    {
-      title: "Capture pictures with AI",
-      description:
-        "Capture stunning photos effortlessly using our advanced AI technology.",
-      skeleton: <SkeletonTwo />,
-      className: "border-b col-span-1 lg:col-span-2 dark:border-neutral-800",
-    },
-    {
-      title: "Deploy in seconds",
-      description:
-        "With our blazing fast, state of the art, cutting edge, we are so back cloud servies (read AWS) - you can deploy your model in seconds.",
+        "Connect with strangers, share thoughts, and build new experiences without revealing your identity.",
       skeleton: <SkeletonFour />,
       className: "col-span-1 lg:col-span-3 border-b lg:border-none",
     },
+    {
+      title: "Express Yourself with Voice",
+      description:
+        "Break free from text and share your personality through expressive voice messages.",
+      skeleton: <SkeletonTwo />,
+      className: "border-b col-span-1 lg:col-span-3 dark:border-neutral-800 ",
+    },
+    {
+      title: "Dare to Be Different",
+      description:
+        "Challenge your friends with fun and intriguing dares, turning conversations into unforgettable moments.",
+      skeleton: <SkeletonOne />,
+      className: "col-span-1 lg:col-span-6 border-b lg:border-r dark:border-neutral-800 ",
+    },
+    
   ];
   return (
-    <div className="relative font-grotesk bg-black py-10 lg:py-40 max-w-7xl mx-auto">
+    <div id="features" className="relative font-grotesk bg-black py-10 lg:py-40 max-w-7xl mx-auto">
       <div className="px-8">
-        <h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black dark:text-white">
-          Packed with thousands of features
-        </h4>
+      <div className="px-8">
+  <h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium">
+    <span className="text-white">Connect,</span> 
+    <span className="text-blue-500"> Converse,</span> 
+    <span className="text-white"> Challenge—</span> 
+    <span className="text-blue-500">Anonymously</span>
+  </h4>
 
-        <p className="text-sm lg:text-base  max-w-2xl  my-4 mx-auto text-neutral-500 text-center font-normal dark:text-neutral-300">
-          From Image generation to video generation, Everything AI has APIs for
-          literally everything. It can even create this website copy for you.
-        </p>
-      </div>
+  <p className="text-sm lg:text-base max-w-2xl my-4 mx-auto text-neutral-500 text-center font-normal">
+    <span className="text-white">Dive into a world where</span> 
+    <span className="text-white"> anonymity</span> 
+    <span className="text-white"> meets</span> 
+    <span className="text-white"> excitement.</span>
+  </p>
+
+ 
+</div>
+
+</div>
+
 
       <div className="relative ">
         <div className="grid grid-cols-1 lg:grid-cols-6 mt-12 xl:border rounded-md dark:border-neutral-800">
@@ -49,7 +65,7 @@ export function FeaturesSectionDemo() {
             <FeatureCard key={feature.title} className={feature.className}>
               <FeatureTitle>{feature.title}</FeatureTitle>
               <FeatureDescription>{feature.description}</FeatureDescription>
-              <div className=" h-1/2 w-full">{feature.skeleton}</div>
+              <div className=" h-full w-full">{feature.skeleton}</div>
             </FeatureCard>
           ))}
         </div>
@@ -96,22 +112,18 @@ const FeatureDescription = ({ children }: { children?: React.ReactNode }) => {
 
 export const SkeletonOne = () => {
   return (
-    <div className="relative flex py-8 px-2 gap-10 h-full">
+    <div className="relative flex py-8 px-2 gap-10 h-auto">
       <div className="w-full  p-5  mx-auto bg-white dark:bg-neutral-900 shadow-2xl group h-full">
         <div className="flex flex-1 w-full h-full flex-col space-y-2  ">
           {/* TODO */}
-          <img
-            src="/linear.webp"
-            alt="header"
-            width={800}
-            height={800}
-            className="h-full w-full aspect-square object-cover object-left-top rounded-sm"
-          />
+          <video id="bannerVideo" autoPlay muted loop>
+          <source src={LandVideo} type="video/mp4" />
+        </video>
         </div>
       </div>
 
-      <div className="absolute bottom-0 z-40 inset-x-0 h-60 bg-gradient-to-t from-white dark:from-black via-white dark:via-black to-transparent w-full pointer-events-none" />
-      <div className="absolute top-0 z-40 inset-x-0 h-60 bg-gradient-to-b from-white dark:from-black via-transparent to-transparent w-full pointer-events-none" />
+      <div className="absolute bottom-0 z-5 inset-x-0 h-60 bg-gradient-to-t from-white dark:from-black via-white dark:via-black to-transparent w-full pointer-events-none" />
+      <div className="absolute top-0 z-5 inset-x-0 h-60 bg-gradient-to-b from-white dark:from-black via-transparent to-transparent w-full pointer-events-none" />
     </div>
   );
 };
@@ -141,27 +153,23 @@ export const SkeletonThree = () => {
 
 export const SkeletonTwo = () => {
   const images = [
-    "https://images.unsplash.com/photo-1517322048670-4fba75cbbb62?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1573790387438-4da905039392?q=80&w=3425&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1555400038-63f5ba517a47?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1554931670-4ebfabf6e7a9?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1546484475-7f7bd55792da?q=80&w=2581&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+   img1,img3,img2,img4
   ];
 
   const imageVariants = {
     whileHover: {
       scale: 1.1,
       rotate: 0,
-      zIndex: 100,
+      zIndex: 10,
     },
     whileTap: {
       scale: 1.1,
       rotate: 0,
-      zIndex: 100,
+      zIndex: 10,
     },
   };
   return (
-    <div className="relative flex flex-col items-start p-8 gap-10 h-full overflow-hidden">
+    <div className="relative ml-10 flex flex-col items-start p-8 gap-10 h-full overflow-hidden">
       {/* TODO */}
       <div className="flex flex-row -ml-20">
         {images.map((image, idx) => (
@@ -202,14 +210,14 @@ export const SkeletonTwo = () => {
               alt="bali images"
               width="500"
               height="500"
-              className="rounded-lg h-20 w-20 md:h-40 md:w-40 object-cover flex-shrink-0"
+              className="rounded-lg h-20 w-20 md:h-40 md:w-40  flex-shrink-0"
             />
           </motion.div>
         ))}
       </div>
 
-      <div className="absolute left-0 z-[100] inset-y-0 w-20 bg-gradient-to-r from-white dark:from-black to-transparent  h-full pointer-events-none" />
-      <div className="absolute right-0 z-[100] inset-y-0 w-20 bg-gradient-to-l from-white dark:from-black  to-transparent h-full pointer-events-none" />
+      <div className="absolute left-0 z-[5] inset-y-0 w-20 bg-gradient-to-r from-white dark:from-black to-transparent  h-full pointer-events-none" />
+      <div className="absolute right-0 z-[5] inset-y-0 w-20 bg-gradient-to-l from-white dark:from-black  to-transparent h-full pointer-events-none" />
     </div>
   );
 };

@@ -3,19 +3,28 @@ import { useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { SparklesCore } from './ui/SparklesCore'
 import { Button } from './ui/moving-border'
+import { triggerState, value } from '../RecoilState'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 export function Hero() {
   const [roomNo, setRoomNo] = useState('')
+  const setTrigger= useSetRecoilState(triggerState);
+  const setRoomVal=useSetRecoilState(value);
+  const navigate=useNavigate();
 
   const handleEnterChat = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log(`Entering room: ${roomNo}`)
+    console.log(`Entering room: ${roomNo}`);
+    setTrigger(true);
+    setRoomVal(roomNo);
+    navigate("\chat");
   }
 
   return (
-    <section className="relative flex-grow flex items-center font-grotesk justify-center p-4 bg-black">
-      <div className="container mx-auto text-center">
-        <h1 className="text-5xl font-bold mb-6 animate-fade-in-down">Get a Group, Reveal your Secret !</h1>
+    <section className="relative flex-grow flex items-center font-grotesk justify-center mt-5 p-4 bg-black">
+      <div id='home' className="container mx-auto  text-center">
+        <h1  className="text-5xl font-bold mb-6 animate-fade-in-down">Get a Group, Reveal your Secret !</h1>
 <div className='flex justify-center'>
 <div className="relative w-full max-w-[300px] h-0.5 mt-2 ">
     <div className="w-full h-full bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
@@ -48,7 +57,7 @@ export function Hero() {
   <p className="text-2xl mb-8 animate-fade-in-up mt-10 text-center text-gray-200">
  <span className='text-blue-500 font-bold'>No login</span> required. Just enter a <span className='text-blue-500 font-bold'>room number </span> and start chatting.
 </p>
-<form onSubmit={handleEnterChat} className="flex justify-center gap-4 pt-20 mb-4">
+<form onSubmit={handleEnterChat} className="flex justify-center items-center gap-4 pt-20 mb-4">
   <input
     type="text"
     placeholder="Enter room number"
@@ -56,11 +65,14 @@ export function Hero() {
     onChange={(e) => setRoomNo(e.target.value)}
     className="w-64 bg-gray-800 border border-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2"
   />
-  <Button
-    borderRadius="1.75rem" className="text-gray-300  hover:text-white font-code font-bold text-sm transition duration-300 p-3"
+ 
+  <Button 
+    borderRadius="1.75rem" className="text-gray-300  hover:text-white font-code font-bold text-sm transition duration-300 p-3" 
   >
     Enter Chat <ArrowRight className="ml-2" />
-  </Button>
+  </Button>  
+
+ 
 </form>
 
       </div>

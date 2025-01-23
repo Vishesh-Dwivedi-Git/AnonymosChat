@@ -17,14 +17,14 @@ export function Demo() {
     }
   };
 
-  const handleKeyPress = (e) => {
+  const handleKeyPress = (e: { key: string; }) => {
     if (e.key === 'Enter') {
       handleSendMessage();
     }
   };
 
   return (
-    <section className="py-16 font-grotesk bg-opacity-10 backdrop-blur-lg">
+    <section id='demo' className="py-16 font-grotesk bg-opacity-10 backdrop-blur-lg">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold mb-12 text-center text-white">Take a Demo</h2>
         <div className="bg-gray-900 bg-opacity-60 p-6 rounded-lg shadow-lg max-w-3xl mx-auto border border-gray-700">
