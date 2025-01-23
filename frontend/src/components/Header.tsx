@@ -61,15 +61,15 @@ export function Header() {
           } md:flex md:flex-row md:relative md:top-0 md:left-0 md:space-y-0 md:space-x-6 md:w-auto md:shadow-none md:bg-transparent items-center`}
         >
           
-          <Link to="home" smooth={true}
+          <Link to="home" smooth={true}  onClick={() => setIsMenuOpen(false)}
                   duration={500} className="text-gray-300 hover:text-white font-code font-bold text-lg transition duration-300 cursor-pointer">
             Home
           </Link>
-          <Link to="features" smooth={true}
+          <Link to="features" smooth={true}  onClick={() => setIsMenuOpen(false)}
                   duration={500}  className="text-gray-300 hover:text-white font-code font-bold text-lg transition duration-300  cursor-pointer">
             Features
           </Link>
-          <Link to="demo" smooth={true}
+          <Link to="demo" smooth={true}  onClick={() => setIsMenuOpen(false)}
                   duration={500} >
           <Button borderRadius="1.75rem" className="text-gray-300  hover:text-white font-code font-bold text-sm transition duration-300 ">
             Take Demo
