@@ -4,8 +4,8 @@ import { ArrowRight } from 'lucide-react'
 import { SparklesCore } from './ui/SparklesCore'
 import { Button } from './ui/moving-border'
 import { triggerState, value } from '../RecoilState'
-import { useRecoilState, useSetRecoilState } from 'recoil'
-import { Navigate, useNavigate } from 'react-router-dom'
+import {  useSetRecoilState } from 'recoil'
+import { useNavigate } from 'react-router-dom'
 
 export function Hero() {
   const [roomNo, setRoomNo] = useState('')
