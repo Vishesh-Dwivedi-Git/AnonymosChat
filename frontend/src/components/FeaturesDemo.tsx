@@ -2,7 +2,7 @@ import React from "react";
 import { cn } from "../lib/utils";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import LandVideo from "../assets/LandVideo.mp4.mp4";
+import LandVideo from "../assets/FinalLand.mp4";
 import img1 from "../assets/output.jpg";
 import img2 from "../assets/output (1).jpg";
 import img3 from "../assets/output (2).jpg";
