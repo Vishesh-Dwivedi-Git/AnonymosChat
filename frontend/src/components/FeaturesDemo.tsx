@@ -1,14 +1,13 @@
 import React from "react";
 import { cn } from "../lib/utils";
-import createGlobe from "cobe";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { IconBrandYoutubeFilled } from "@tabler/icons-react";
-import LandVideo from "../assets/LandVideo.mp4.mp4"
-import img1 from "../assets/output.jpg"
-import img2 from "../assets/output (1).jpg"
-import img3 from "../assets/output (2).jpg"
-import img4 from "../assets/output (3).jpg"
+import LandVideo from "../assets/LandVideo.mp4.mp4";
+import img1 from "../assets/output.jpg";
+import img2 from "../assets/output (1).jpg";
+import img3 from "../assets/output (2).jpg";
+import img4 from "../assets/output (3).jpg";
+import createGlobe from "cobe";
 
 export function FeaturesSectionDemo() {
   const features = [
@@ -17,55 +16,51 @@ export function FeaturesSectionDemo() {
       description:
         "Connect with strangers, share thoughts, and build new experiences without revealing your identity.",
       skeleton: <SkeletonFour />,
-      className: "col-span-1 lg:col-span-3 border-b lg:border-none",
+      className: "col-span-1 lg:col-span-3",
     },
     {
       title: "Express Yourself with Voice",
       description:
         "Break free from text and share your personality through expressive voice messages.",
       skeleton: <SkeletonTwo />,
-      className: "border-b col-span-1 lg:col-span-3 dark:border-neutral-800 ",
+      className: "col-span-1 lg:col-span-3",
     },
     {
       title: "Dare to Be Different",
       description:
         "Challenge your friends with fun and intriguing dares, turning conversations into unforgettable moments.",
       skeleton: <SkeletonOne />,
-      className: "col-span-1 lg:col-span-6 border-b lg:border-r dark:border-neutral-800 ",
+      className: "col-span-1 lg:col-span-6",
     },
-    
   ];
+
   return (
-    <div id="features" className="relative font-grotesk bg-black py-10 lg:py-40 max-w-7xl mx-auto">
-      <div className="px-8">
-      <div className="px-8">
-  <h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium">
-    <span className="text-white">Connect,</span> 
-    <span className="text-blue-500"> Converse,</span> 
-    <span className="text-white"> Challenge—</span> 
-    <span className="text-blue-500">Anonymously</span>
-  </h4>
+    <div
+      id="features"
+      className="relative font-grotesk bg-black py-10 lg:py-40 max-w-7xl mx-auto"
+    >
+      <div className="px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium">
+            <span className="text-white">Connect,</span>{" "}
+            <span className="text-blue-500">Converse,</span>{" "}
+            <span className="text-white">Challenge—</span>{" "}
+            <span className="text-blue-500">Anonymously</span>
+          </h4>
 
-  <p className="text-sm lg:text-base max-w-2xl my-4 mx-auto text-neutral-500 text-center font-normal">
-    <span className="text-white">Dive into a world where</span> 
-    <span className="text-white"> anonymity</span> 
-    <span className="text-white"> meets</span> 
-    <span className="text-white"> excitement.</span>
-  </p>
+          <p className="text-sm lg:text-base max-w-2xl my-4 mx-auto text-neutral-500 font-normal">
+            Dive into a world where anonymity meets excitement.
+          </p>
+        </div>
+      </div>
 
- 
-</div>
-
-</div>
-
-
-      <div className="relative ">
-        <div className="grid grid-cols-1 lg:grid-cols-6 mt-12 xl:border rounded-md dark:border-neutral-800">
+      <div className="mt-12">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-6 xl:border rounded-md px-4 sm:px-6 lg:px-8 dark:border-neutral-800">
           {features.map((feature) => (
             <FeatureCard key={feature.title} className={feature.className}>
               <FeatureTitle>{feature.title}</FeatureTitle>
               <FeatureDescription>{feature.description}</FeatureDescription>
-              <div className=" h-full w-full">{feature.skeleton}</div>
+              <div className="h-full w-full">{feature.skeleton}</div>
             </FeatureCard>
           ))}
         </div>
@@ -82,7 +77,14 @@ const FeatureCard = ({
   className?: string;
 }) => {
   return (
-    <div className={cn(`p-4 sm:p-8 relative overflow-hidden`, className)}>
+    <div
+      className={cn(
+        "p-6 sm:p-8 relative overflow-hidden rounded-md",
+        "bg-black bg-opacity-50",
+        "border border-neutral-500 lg:border-none", // Remove borders on large screens
+        className
+      )}
+    >
       {children}
     </div>
   );
@@ -90,7 +92,7 @@ const FeatureCard = ({
 
 const FeatureTitle = ({ children }: { children?: React.ReactNode }) => {
   return (
-    <p className=" max-w-5xl mx-auto text-left tracking-tight text-black dark:text-white text-xl md:text-2xl md:leading-snug">
+    <p className="text-lg md:text-xl lg:text-2xl font-medium text-white">
       {children}
     </p>
   );
@@ -98,27 +100,18 @@ const FeatureTitle = ({ children }: { children?: React.ReactNode }) => {
 
 const FeatureDescription = ({ children }: { children?: React.ReactNode }) => {
   return (
-    <p
-      className={cn(
-        "text-sm md:text-base  max-w-4xl text-left mx-auto max-md:hidden",
-        "text-neutral-500 text-center font-normal dark:text-neutral-300",
-        "text-left max-w-sm mx-0 md:text-sm my-2"
-      )}
-    >
-      {children}
-    </p>
+    <p className="text-sm md:text-base text-neutral-400 mt-2">{children}</p>
   );
 };
 
 export const SkeletonOne = () => {
   return (
     <div className="relative flex py-8 px-2 gap-10 h-auto">
-      <div className="w-full  p-5  mx-auto bg-white dark:bg-neutral-900 shadow-2xl group h-full">
-        <div className="flex flex-1 w-full h-full flex-col space-y-2  ">
-          {/* TODO */}
+      <div className="w-full p-5 mx-auto bg-white dark:bg-neutral-900 shadow-2xl group h-full">
+        <div className="flex flex-1 w-full h-full flex-col space-y-2">
           <video id="bannerVideo" autoPlay muted loop>
-          <source src={LandVideo} type="video/mp4" />
-        </video>
+            <source src={LandVideo} type="video/mp4" />
+          </video>
         </div>
       </div>
 
@@ -128,33 +121,8 @@ export const SkeletonOne = () => {
   );
 };
 
-export const SkeletonThree = () => {
-  return (
-    <a
-      href="https://www.youtube.com/watch?v=RPa3_AD1_Vs"
-      className="relative flex gap-10  h-full group/image"
-    >
-      <div className="w-full  mx-auto bg-transparent dark:bg-transparent group h-full">
-        <div className="flex flex-1 w-full h-full flex-col space-y-2  relative">
-          {/* TODO */}
-          <IconBrandYoutubeFilled className="h-20 w-20 absolute z-10 inset-0 text-red-500 m-auto " />
-          <img
-            src="https://assets.aceternity.com/fireship.jpg"
-            alt="header"
-            width={800}
-            height={800}
-            className="h-full w-full aspect-square object-cover object-center rounded-sm blur-none group-hover/image:blur-md transition-all duration-200"
-          />
-        </div>
-      </div>
-    </a>
-  );
-};
-
 export const SkeletonTwo = () => {
-  const images = [
-   img1,img3,img2,img4
-  ];
+  const images = [img1, img3, img2, img4];
 
   const imageVariants = {
     whileHover: {
@@ -168,9 +136,9 @@ export const SkeletonTwo = () => {
       zIndex: 10,
     },
   };
+
   return (
     <div className="relative ml-10 flex flex-col items-start p-8 gap-10 h-full overflow-hidden">
-      {/* TODO */}
       <div className="flex flex-row -ml-20">
         {images.map((image, idx) => (
           <motion.div
@@ -210,38 +178,40 @@ export const SkeletonTwo = () => {
               alt="bali images"
               width="500"
               height="500"
-              className="rounded-lg h-20 w-20 md:h-40 md:w-40  flex-shrink-0"
+              className="rounded-lg h-20 w-20 md:h-40 md:w-40 flex-shrink-0"
             />
           </motion.div>
         ))}
       </div>
 
-      <div className="absolute left-0 z-[5] inset-y-0 w-20 bg-gradient-to-r from-white dark:from-black to-transparent  h-full pointer-events-none" />
-      <div className="absolute right-0 z-[5] inset-y-0 w-20 bg-gradient-to-l from-white dark:from-black  to-transparent h-full pointer-events-none" />
+      <div className="absolute left-0 z-[5] inset-y-0 w-20 bg-gradient-to-r from-white dark:from-black to-transparent h-full pointer-events-none" />
+      <div className="absolute right-0 z-[5] inset-y-0 w-20 bg-gradient-to-l from-white dark:from-black to-transparent h-full pointer-events-none" />
     </div>
   );
 };
 
 export const SkeletonFour = () => {
   return (
-    <div className="h-60 md:h-60  flex flex-col items-center relative bg-transparent dark:bg-transparent mt-10">
-      <Globe className="absolute -right-10 md:-right-10 -bottom-80 md:-bottom-72" />
+    <div className="h-96 md:h-96 flex justify-center items-center relative bg-transparent dark:bg-transparent">
+      <Globe className="absolute w-full h-full" />
     </div>
   );
 };
 
-export const Globe = ({ className }: { className?: string }) => {
+
+const Globe = ({ className }: { className?: string }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    let phi = 0;
+    let phi = 0; // Rotation angle for the globe
+    const canvas = canvasRef.current;
 
-    if (!canvasRef.current) return;
+    if (!canvas) return;
 
-    const globe = createGlobe(canvasRef.current, {
+    const globe = createGlobe(canvas, {
       devicePixelRatio: 2,
-      width: 600 * 2,
-      height: 600 * 2,
+      width: 1200, // Adjusted size for retina displays
+      height: 700,
       phi: 0,
       theta: 0,
       dark: 1,
@@ -252,19 +222,17 @@ export const Globe = ({ className }: { className?: string }) => {
       markerColor: [0.1, 0.8, 1],
       glowColor: [1, 1, 1],
       markers: [
-        // longitude latitude
-        { location: [37.7595, -122.4367], size: 0.03 },
+        { location: [37.7595, -122.4367], size: 0.03 }, // Example marker
         { location: [40.7128, -74.006], size: 0.1 },
       ],
       onRender: (state) => {
-        // Called on every animation frame.
-        // `state` will be an empty object, return updated params.
         state.phi = phi;
-        phi += 0.01;
+        phi += 0.01; // Controls rotation speed
       },
     });
 
     return () => {
+      // Cleanup globe instance on unmount
       globe.destroy();
     };
   }, []);
@@ -272,8 +240,17 @@ export const Globe = ({ className }: { className?: string }) => {
   return (
     <canvas
       ref={canvasRef}
-      style={{ width: 600, height: 600, maxWidth: "100%", aspectRatio: 1 }}
+      style={{
+        width: "100%", // Ensures responsiveness
+        height: "100%",
+        maxWidth: "600px", // Optional max size for smaller screens
+        maxHeight: "600px",
+        aspectRatio: "1", // Maintains a square aspect ratio
+        backgroundColor: "rgba(0, 0, 0, 0.1)", // Add temporary background for debugging
+      }}
       className={className}
     />
   );
 };
+
+export default Globe;

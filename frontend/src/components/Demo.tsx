@@ -1,5 +1,5 @@
-import { ArrowRight } from 'lucide-react'
-import { useState } from 'react'
+import { ArrowRight } from 'lucide-react';
+import { useState } from 'react';
 
 export function Demo() {
   const [message, setMessage] = useState('');
@@ -24,17 +24,22 @@ export function Demo() {
   };
 
   return (
-    <section id='demo' className="py-16 font-grotesk bg-opacity-10 backdrop-blur-lg">
+    <section
+      id="demo"
+      className="py-16 font-grotesk bg-opacity-10 backdrop-blur-lg"
+    >
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-12 text-center text-white">Take a Demo</h2>
+        <h2 className="text-3xl font-bold mb-12 text-center text-white">
+          Take a Demo
+        </h2>
         <div className="bg-gray-900 bg-opacity-60 p-6 rounded-lg shadow-lg max-w-3xl mx-auto border border-gray-700">
           <div className="flex flex-col gap-4">
             {messages.map((msg, index) => (
               <div
                 key={index}
-                className={`p-4 rounded-lg max-w-[70%] ${
-                  msg.sender === 'user' 
-                    ? 'bg-blue-500 self-end text-white' 
+                className={`p-4 rounded-lg max-w-[70%] break-words ${
+                  msg.sender === 'user'
+                    ? 'bg-blue-500 self-end text-white'
                     : 'bg-gray-800 text-gray-300 self-start'
                 }`}
               >
@@ -42,7 +47,7 @@ export function Demo() {
               </div>
             ))}
           </div>
-          <div className="mt-6 flex gap-4">
+          <div className="mt-6 flex flex-col sm:flex-row gap-4">
             <input
               type="text"
               placeholder="Type your message..."
@@ -52,7 +57,7 @@ export function Demo() {
               onKeyPress={handleKeyPress}
             />
             <button
-              className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg flex items-center"
+              className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg flex items-center justify-center"
               onClick={handleSendMessage}
             >
               Send <ArrowRight className="ml-2" />
@@ -61,5 +66,5 @@ export function Demo() {
         </div>
       </div>
     </section>
-  )
+  );
 }
