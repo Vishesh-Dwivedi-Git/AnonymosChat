@@ -20,7 +20,7 @@ export default function ChatUI(): JSX.Element {
   // WebSocket connection management
   useEffect(() => {
     console.log("Starting WebSocket connection...");
-    ws.current = new WebSocket('wss://anonymous-backend1-1.onrender.com/ws');
+    ws.current = new WebSocket('wss://anonymous-backend1-1.onrender.com');
   
     ws.current.onopen = () => {
       console.log("Connected to the server");
