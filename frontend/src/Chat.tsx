@@ -100,7 +100,7 @@ export default function ChatUI(): JSX.Element {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-screen bg-black bg-opacity-90 text-gray-300 font-grotesk">
+    <div className="flex flex-col md:flex-row min-h-screen bg-black bg-opacity-90 text-gray-300 font-grotesk">
       {/* Sidebar */}
       <Sidebar
         isOpen={isSidebarOpen}
@@ -109,7 +109,7 @@ export default function ChatUI(): JSX.Element {
       />
 
       {/* Main Chat Area */}
-      <div className="flex-1 flex flex-col bg-gray-900 bg-opacity-20 backdrop-blur-md border-l border-gray-800">
+      <div className="flex-1 flex flex-col bg-gray-900 bg-opacity-20 backdrop-blur-md border-l border-gray-800 max-h-screen overflow-hidden">
         <Header
           title="Anonymous"
           onMenuClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -164,11 +164,9 @@ const Sidebar = ({
 
   return (
     <div
-      className={`
-        fixed inset-0 z-50 bg-black bg-opacity-70 transform transition-transform 
+      className={`fixed inset-0 z-50 bg-black bg-opacity-70 transform transition-transform 
         ${isOpen ? "translate-x-0" : "-translate-x-full"} 
-        md:translate-x-0 md:relative md:w-80 lg:w-96 flex flex-col backdrop-blur-lg border-r border-gray-800
-      `}
+        md:translate-x-0 md:relative md:w-80 lg:w-96 flex flex-col backdrop-blur-lg border-r border-gray-800`}
     >
       <div className="p-4 border-b border-gray-800 flex items-center justify-between">
         <h2 className="text-2xl font-extrabold text-blue-400">
@@ -267,18 +265,17 @@ const InputArea = ({
         className="flex-1 bg-gray-800 bg-opacity-50 text-gray-300 placeholder-gray-500 focus:ring-blue-500 text-sm md:text-base py-2 px-4 rounded-lg"
       />
       <button className="relative text-gray-400 hover:text-blue-400 group cursor-pointer" disabled>
-  <Upload className="h-5 w-5" />
-  <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-80 text-white text-xs rounded-lg px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity">
-    Coming Soon
-  </div>
-</button>
-<button className="relative text-gray-400 hover:text-blue-400 group cursor-pointer" disabled>
-  <Mic className="h-5 w-5" />
-  <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-80 text-white text-xs rounded-lg px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity">
-    Coming Soon
-  </div>
-</button>
-
+        <Upload className="h-5 w-5" />
+        <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-80 text-white text-xs rounded-lg px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity">
+          Coming Soon
+        </div>
+      </button>
+      <button className="relative text-gray-400 hover:text-blue-400 group cursor-pointer" disabled>
+        <Mic className="h-5 w-5" />
+        <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-80 text-white text-xs rounded-lg px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity">
+          Coming Soon
+        </div>
+      </button>
       <button onClick={onEmojiToggle} className="text-gray-400 hover:text-blue-400">
         😀
       </button>
