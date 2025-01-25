@@ -110,18 +110,39 @@ export default function ChatUI(): JSX.Element {
 
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col bg-gray-900 bg-opacity-20 backdrop-blur-md border-l border-gray-800 max-h-screen overflow-hidden">
-        <Header
-          title="Anonymous"
-          onMenuClick={() => setIsSidebarOpen(!isSidebarOpen)}
-        />
-        <ChatArea ref={chatRef} messages={messages} />
-        <InputArea
-          inputMessage={inputMessage}
-          setInputMessage={setInputMessage}
-          onSend={sendMessage}
-          onKeyDown={handleKeyDown}
-          onEmojiToggle={() => setShowEmojiPicker(!showEmojiPicker)}
-        />
+        {/* Fixed Header */}
+        <div className="fixed top-0 inset-x-0 z-50">
+          <Header
+            title="Anonymous"
+            onMenuClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          />
+        </div>
+
+        {/* Chat Area */}
+        <div
+          ref={chatRef}
+          className="flex-1 mt-16 mb-20 p-4 space-y-4 overflow-y-auto no-scrollbar"
+        >
+          {messages.map((msg, index) => (
+            <div key={index} className="flex items-start space-x-4">
+              <span className="text-sm text-blue-400 font-semibold">User</span>
+              <div className="bg-blue-900 bg-opacity-30 text-white rounded-lg p-2 text-sm max-w-[80%]">
+                {msg}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Fixed Input Area */}
+        <div className="fixed bottom-0 inset-x-0 z-50">
+          <InputArea
+            inputMessage={inputMessage}
+            setInputMessage={setInputMessage}
+            onSend={sendMessage}
+            onKeyDown={handleKeyDown}
+            onEmojiToggle={() => setShowEmojiPicker(!showEmojiPicker)}
+          />
+        </div>
       </div>
 
       {/* Notifications */}
@@ -223,24 +244,6 @@ const Header = ({
   </div>
 );
 
-const ChatArea = React.forwardRef<HTMLDivElement, { messages: string[] }>(
-  ({ messages }, ref) => (
-    <div
-      ref={ref}
-      className="flex-1 p-4 space-y-4 overflow-y-auto no-scrollbar"
-    >
-      {messages.map((msg, index) => (
-        <div key={index} className="flex items-start space-x-4">
-          <span className="text-sm text-blue-400 font-semibold">User</span>
-          <div className="bg-blue-900 bg-opacity-30 text-white rounded-lg p-2 text-sm max-w-[80%]">
-            {msg}
-          </div>
-        </div>
-      ))}
-    </div>
-  )
-);
-
 const InputArea = ({
   inputMessage,
   setInputMessage,
@@ -266,15 +269,9 @@ const InputArea = ({
       />
       <button className="relative text-gray-400 hover:text-blue-400 group cursor-pointer" disabled>
         <Upload className="h-5 w-5" />
-        <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-80 text-white text-xs rounded-lg px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity">
-          Coming Soon
-        </div>
       </button>
       <button className="relative text-gray-400 hover:text-blue-400 group cursor-pointer" disabled>
         <Mic className="h-5 w-5" />
-        <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-80 text-white text-xs rounded-lg px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity">
-          Coming Soon
-        </div>
       </button>
       <button onClick={onEmojiToggle} className="text-gray-400 hover:text-blue-400">
         😀
