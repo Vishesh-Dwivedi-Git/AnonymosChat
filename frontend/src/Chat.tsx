@@ -109,7 +109,7 @@ export default function ChatUI(): JSX.Element {
       />
 
       {/* Main Chat Area */}
-      <div className="flex-1 flex flex-col bg-gray-900 bg-opacity-20 backdrop-blur-md border-l border-gray-800 max-h-screen overflow-hidden">
+      <div className="flex-1 flex flex-col bg-gray-900 bg-opacity-20 backdrop-blur-md border-l border-gray-800 overflow-hidden">
         {/* Fixed Header */}
         <div className="fixed top-0 inset-x-0 z-50">
           <Header
@@ -122,6 +122,7 @@ export default function ChatUI(): JSX.Element {
         <div
           ref={chatRef}
           className="flex-1 mt-16 mb-20 p-4 space-y-4 overflow-y-auto no-scrollbar"
+          style={{ height: "calc(100vh - 80px)" }} // Adjusting the height
         >
           {messages.map((msg, index) => (
             <div key={index} className="flex items-start space-x-4">
