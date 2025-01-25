@@ -83,7 +83,7 @@ export default function ChatUI(): JSX.Element {
 
   useEffect(() => {
     if (chatRef.current) {
-      chatRef.current.scrollTop = chatRef.current.scrollHeight;
+      chatRef.current.scrollTop = chatRef.current.scrollHeight; // Auto-scroll to the latest message
     }
   }, [messages]);
 
@@ -122,7 +122,10 @@ export default function ChatUI(): JSX.Element {
         <div
           ref={chatRef}
           className="flex-1 mt-16 mb-20 p-4 space-y-4 overflow-y-auto no-scrollbar"
-          style={{ height: "calc(100vh - 80px)" }} // Adjusting the height
+          style={{
+            height: "calc(100vh - 80px - 56px)", // Adjust to subtract both header and input areas
+            overflowY: "auto", // Enable scroll only in this section
+          }}
         >
           {messages.map((msg, index) => (
             <div key={index} className="flex items-start space-x-4">
@@ -235,7 +238,7 @@ const Header = ({
   onMenuClick: () => void;
 }) => (
   <div className="flex items-center justify-between p-4 bg-black bg-opacity-50 border-b border-gray-800">
-    <h1 className="text-lg md:text-2xl font-bold text-blue-400">{title}!</h1>
+    <h1 className="text-lg md:text-2xl font-bold text-blue-400">{title}</h1>
     <button
       onClick={onMenuClick}
       className="text-gray-400 hover:text-blue-400 md:hidden"
@@ -244,6 +247,7 @@ const Header = ({
     </button>
   </div>
 );
+
 
 const InputArea = ({
   inputMessage,
@@ -268,15 +272,34 @@ const InputArea = ({
         onKeyDown={onKeyDown}
         className="flex-1 bg-gray-800 bg-opacity-50 text-gray-300 placeholder-gray-500 focus:ring-blue-500 text-sm md:text-base py-2 px-4 rounded-lg"
       />
-      <button className="relative text-gray-400 hover:text-blue-400 group cursor-pointer" disabled>
+      
+      {/* Upload Button with Hover "Coming Soon" */}
+      <button
+        className="relative text-gray-400 hover:text-blue-400 cursor-pointer group"
+        disabled
+      >
         <Upload className="h-5 w-5" />
+        <span className="absolute left-1/2 transform -translate-x-1/2 -top-8 text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity">
+          Coming Soon
+        </span>
       </button>
-      <button className="relative text-gray-400 hover:text-blue-400 group cursor-pointer" disabled>
+      
+      {/* Mic Button with Hover "Coming Soon" */}
+      <button
+        className="relative text-gray-400 hover:text-blue-400 cursor-pointer group"
+        disabled
+      >
         <Mic className="h-5 w-5" />
+        <span className="absolute left-1/2 transform -translate-x-1/2 -top-8 text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity">
+          Coming Soon
+        </span>
       </button>
+      
       <button onClick={onEmojiToggle} className="text-gray-400 hover:text-blue-400">
         😀
       </button>
+      
+      {/* Send Button */}
       <button
         onClick={onSend}
         className="bg-blue-600 bg-opacity-50 hover:bg-opacity-75 px-4 py-2 rounded-lg"
