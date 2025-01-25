@@ -31,7 +31,6 @@ export default function ChatUI(): JSX.Element {
   const [notifications, setNotifications] = useState<string[]>([]);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
-  // WebSocket connection management
   useEffect(() => {
     ws.current = new WebSocket("https://anonymous-backend1-1.onrender.com");
 
@@ -92,7 +91,7 @@ export default function ChatUI(): JSX.Element {
     setNotifications((prev) => [...prev, message]);
     setTimeout(() => {
       setNotifications((prev) => prev.slice(1));
-    }, 3000); // Notification disappears after 3 seconds
+    }, 3000);
   };
 
   const handleEmojiClick = (emojiObject: any) => {
@@ -110,7 +109,7 @@ export default function ChatUI(): JSX.Element {
       />
 
       {/* Main Chat Area */}
-      <div className="flex-1 flex flex-col bg-gray-900 bg-opacity-20 backdrop-blur-md">
+      <div className="flex-1 flex flex-col bg-gray-900 bg-opacity-20 backdrop-blur-md border-l border-gray-800">
         <Header
           title="Anonymous"
           onMenuClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -165,11 +164,13 @@ const Sidebar = ({
 
   return (
     <div
-      className={`fixed inset-0 z-50 bg-black bg-opacity-70 transform transition-transform ${
-        isOpen ? "translate-x-0" : "-translate-x-full"
-      } md:relative md:w-80 lg:w-96 flex flex-col backdrop-blur-lg`}
+      className={`
+        fixed inset-0 z-50 bg-black bg-opacity-70 transform transition-transform 
+        ${isOpen ? "translate-x-0" : "-translate-x-full"} 
+        md:translate-x-0 md:relative md:w-80 lg:w-96 flex flex-col backdrop-blur-lg border-r border-gray-800
+      `}
     >
-      <div className="p-6 border-b border-gray-800 flex items-center justify-between">
+      <div className="p-4 border-b border-gray-800 flex items-center justify-between">
         <h2 className="text-2xl font-extrabold text-blue-400">
           <span className="text-white">Chit</span> Chat
         </h2>
@@ -180,7 +181,7 @@ const Sidebar = ({
           <X className="h-6 w-6" />
         </button>
       </div>
-      <div className="p-4">
+      <div className="p-4 border-b border-gray-800">
         <div className="flex items-center">
           <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
           <span className="text-sm text-white">Room: {roomNumber}</span>
@@ -265,6 +266,19 @@ const InputArea = ({
         onKeyDown={onKeyDown}
         className="flex-1 bg-gray-800 bg-opacity-50 text-gray-300 placeholder-gray-500 focus:ring-blue-500 text-sm md:text-base py-2 px-4 rounded-lg"
       />
+      <button className="relative text-gray-400 hover:text-blue-400 group cursor-pointer" disabled>
+  <Upload className="h-5 w-5" />
+  <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-80 text-white text-xs rounded-lg px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity">
+    Coming Soon
+  </div>
+</button>
+<button className="relative text-gray-400 hover:text-blue-400 group cursor-pointer" disabled>
+  <Mic className="h-5 w-5" />
+  <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-80 text-white text-xs rounded-lg px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity">
+    Coming Soon
+  </div>
+</button>
+
       <button onClick={onEmojiToggle} className="text-gray-400 hover:text-blue-400">
         😀
       </button>
