@@ -32,7 +32,7 @@ export default function ChatUI(): JSX.Element {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
   useEffect(() => {
-    ws.current = new WebSocket("https://anonymous-backend1-1.onrender.com");
+    ws.current = new WebSocket("https://anonymousbackend1-production.up.railway.app");
 
     ws.current.onopen = () => {
       setIsConnected(true);
