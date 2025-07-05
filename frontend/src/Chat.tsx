@@ -22,6 +22,7 @@ export default function ChatUI(): JSX.Element {
   const [inputMessage, setInputMessage] = useState<string>("");
   const ws = useRef<WebSocket | null>(null);
   const chatRef = useRef<HTMLDivElement | null>(null);
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const [trigger] = useRecoilState(triggerState);
   const setTrigger = useSetRecoilState(triggerState);
@@ -81,9 +82,10 @@ export default function ChatUI(): JSX.Element {
     }
   };
 
+  // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
-    if (chatRef.current) {
-      chatRef.current.scrollTop = chatRef.current.scrollHeight; // Auto-scroll to the latest message
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
 
@@ -135,6 +137,7 @@ export default function ChatUI(): JSX.Element {
               </div>
             </div>
           ))}
+          <div ref={messagesEndRef} />
         </div>
 
         {/* Fixed Input Area */}
